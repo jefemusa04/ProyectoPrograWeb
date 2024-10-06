@@ -17,7 +17,9 @@ body{
     color: #000;
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
+
 
 .swiper{
     width: 100%;
@@ -84,7 +86,6 @@ body{
 .product-img img{
     width: 120px;
 }
-
 
 
 .contenedorDisco{
@@ -185,4 +186,132 @@ h2{
 
     .navegacion-principal a:hover {
         color: var(--oscuro);
+    }
+
+/* Clases para el carrito de compra */
+
+    .nav{
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        padding: 20px 0;
+    }
+
+    #cart-icon{
+        font-size: 1.8rem;
+        cursor: pointer;
+    }
+
+    .cart{
+        position: fixed;
+        top: 0;
+        right: 0;
+        right: -100%;
+        width: 360px;
+        height: 100vh;
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 20px;
+        background-color: var(--grisClaro);
+        box-shadow: -2px solid 4px hsl(0, 4%, 15%, 0.1);
+        border: 1px solid var(--grisClaro);
+        transition: 1.7s;
+    }
+
+    .cart.active{
+        right: 0;
+        transition: .5s ease;
+    }
+
+    .cart-title{
+        text-align: center;
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+    }
+
+    .cart-box{
+        display: grid;
+        grid-template-columns: 32% 50% 18%;
+        align-items: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+
+    .cart-img{
+        width: 100px;
+        height: 100px;
+        object-fit: contain;
+        padding: 10px;
+    }
+
+    .detail.box{
+        display: grid;
+        row-gap: .5rem;
+    }
+
+    .cart-product-title{
+        font-size: 1rem;
+        text-transform: uppercase;
+    }
+
+    .cart-price{
+        font-weight: 500;
+    }
+
+    .cart-quantity{
+        border: 1px solid --grisClaro;
+        outline-color: #ffffff;
+        width: 1.4rem;
+        text-align: center;
+        font-size: 1rem;
+    }
+
+    .car-remove{
+        font-size: 24px;
+        color: #757575;
+        cursor: pointer;
+    }
+
+    .total{
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 1.5rem;
+        border-top: 1px solid var(--grisClaro);
+    }
+
+    .total-title{
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .total-price{
+        margin-left: .5rem;
+    }
+
+    .btn-buy{
+        display: flex;
+        margin: 1,5rem auto 0 auto;
+        padding: 12px 20px;
+        border: none;
+        background-color: aquamarine;
+        color: #000;
+        font-size: 1rem;
+        font-weight: 500;
+        cursor: pointer;
+        transition: .4s;
+    }
+
+    .btn-buy:hover{
+        background-color: greenyellow;
+        color: red; 
+    }
+
+    #cart-close{
+        position: absolute;
+        top: 1rem;
+        right: .8rem;
+        font-size: 2rem;
+        color: #ffffff;
+        cursor: pointer;
     }
