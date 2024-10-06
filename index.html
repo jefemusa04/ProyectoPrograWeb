@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vinilos Michael Jackson</title>
+    <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,12 +25,38 @@
 <body>
 
     <header>
+        <!-- Navegación -->
         <div class="nav-bg">
             <nav class="navegacion-principal">
                 <h1>MJ Records</h1>
                 <a href="index.html">Inicio</a>
                 <a href="contacto.html">Contacto</a>
-                <a href="carrito.html">Carrito</a>
+
+                <!--Iconos de cart-->
+                <i class="bx bx-shopping-bag" id="cart-icon"></i>
+
+                <!--Cart-->
+                <div class="cart">
+                <h2 class="cart-title">Carrito</h2>
+
+                <!--Contenido del carrito (cart)-->
+                <div class="cart-content">
+
+
+                </div>
+
+                <!--Total del carro-->
+                <div class="total">
+                    <div class="total-title"> Total</div>
+                    <div class="total-price"> $0</div>
+                </div>
+
+                <button type="button" class="btn-buy">Comprar Ahora</button>
+            
+                <!--Cierre del carrito-->
+                <i class="bx bx-x" id="cart-close"></i>
+
+            </div>
             </nav>
         </div>
     </header>
@@ -282,14 +309,23 @@
             slidesPerView: "auto",
             loop: true,
             coverflowEffect: {
+<<<<<<< HEAD
                 depth: 500,
                 modifer: 1,
                 slidesShadows: true,
+=======
+                depth:500,
+                modifer:1,
+                slidesShadows:true,
+>>>>>>> c3557da982c1fbbbd8093d49609ed86c8f6d1f8c
                 rotate: 0,
                 stretch: 0
             }
         })
     </script>
+    <!-- Importación js -->
+    <script src="app.js"></script>
+
 </body>
 
 </html>
