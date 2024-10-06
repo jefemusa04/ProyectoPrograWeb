@@ -1,0 +1,103 @@
+:root{
+    --gris: #757575;
+    --grisClaro: #DFE9F3;
+    --oscuro: #212121;
+}
+
+/*Globales*/
+html {
+    font-size: 78%;
+    box-sizing: border-box;
+    scroll-snap-type: y mandatory;
+
+}
+
+.contenedorDisco{
+    max-width: 10rem;
+    margin: 0 auto;
+}
+
+.sombra {
+    -webkit-box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, .54);
+    -moz-box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, .54);
+    box-shadow: 0px 5px 15px 0px rgba(112, 112, 112, .54);
+    background-color: var(--blanco);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.boton {
+    background-color: darkcyan;
+    color: var(--blanco);
+    padding: 1rem 3rem;
+    margin-top: 1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    border-radius: .5rem;
+    width: 50%;
+    text-align: center;
+    border: none;
+}
+
+/*Tipografia*/
+h1{
+    font-size: 4rem;
+    text-align: left;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+h2{
+    font-size: 2rem;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+/*Discos*/
+@media(min-width: 768px) {
+    .servicios {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: 1rem;
+        scroll-snap-align: center;
+        scroll-snap-stop: always;
+    }
+}
+
+.servicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Navegacoin*/
+    .nav-bg {
+        background-color: var(--gris);
+    }
+
+    .navegacion-principal {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    @media (min-width: 768px) {
+        .navegacion-principal {
+            flex-direction: row;
+            justify-content: left;
+        }
+    }
+
+    .navegacion-principal a {
+        display: block;
+        text-align: center;
+        color: var(--grisClaro);
+        text-decoration: none;
+        font-size: 2rem;
+        font-weight: 700;
+        padding: 1rem;
+    }
+
+    .navegacion-principal a:hover {
+        color: var(--oscuro);
+    }
