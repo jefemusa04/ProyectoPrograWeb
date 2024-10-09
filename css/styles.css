@@ -473,3 +473,14 @@ h2{
       .buscar input:focus {
         width: 240px;
       }
+
+      /*Clase parte de cierre*/
+      .creditos{
+        background-color: white;
+        margin-inline: auto;
+        font-size: 1rem;
+        font-weight: bold;
+        color: black;
+        text-transform: uppercase;
+        text-align: center;
+      }
