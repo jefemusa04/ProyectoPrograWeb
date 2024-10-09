@@ -440,3 +440,36 @@ h2{
         font-size: 60px;
     }
 
+    /*Clases  buscador*/
+    .buscar input{
+        width: 0px;
+        height: 20px;
+        padding: 10px;
+        font-size: 18px;
+        color: #000;
+        outline: none;
+        border: 1PX solid silver;
+        border-radius: 20px; 
+    }
+
+    .btn {
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 33px;
+        right: 75px;
+        flex-direction: row;
+        text-align: center;
+        color: var(--rojomj);
+        background: var(--blancomj);
+        font-size: 20px;
+        border-radius: 50%;
+      }
+
+      .buscar:hover input {
+        width: 120px;
+      }
+      
+      .buscar input:focus {
+        width: 240px;
+      }
