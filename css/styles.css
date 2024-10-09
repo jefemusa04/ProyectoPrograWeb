@@ -423,42 +423,38 @@ h2{
     cursor: pointer;
 }
 
-/* Clase para la imagen de encabezado*/
-.encabezado-img {
-    background-image: url("../Imagenes/Header.webp");
-    height: 60vh;
-    background-size: cover;
-    background-position: top;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: #F6F6F6;
-    padding: 2rem;
-    text-align: center;
-}
+    /* Clase para la imagen de encabezado*/
+    .encabezado-img{
+        background-image: url("../Imagenes/Header.webp");
+        height: 600px;
+        background-size: cover;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #F6F6F6;
+    }
 
-.encabezado-img p {
-    font-size: clamp(14px, 3vw, 20px);
-    margin: 0;
-}
+    .encabezado-img p {
+        font-size: 20px;
+    }
 
 .encabezado-img h2 {
     font-size: clamp(24px, 6vw, 60px);
     margin: 0.5rem 0;
 }
 
-/*Clases  buscador*/
-/* .buscar input {
-    width: 0px;
-    height: 20px;
-    padding: 10px;
-    font-size: 18px;
-    color: #000;
-    outline: none;
-    border: 1PX solid silver;
-    border-radius: 20px;
-}
+    /*Clases  buscador*/
+    .buscar input{
+        width: 0px;
+        height: 20px;
+        padding: 10px;
+        font-size: 18px;
+        color: #000;
+        outline: none;
+        border: 1PX solid silver;
+        border-radius: 20px; 
+    }
 
 .btn {
     width: 3vw; 
