@@ -72,7 +72,7 @@
                 <label for="message">Municipio</label>
                 <input type="text" name="municipio" id="">
                 
-                <h3 class=title-contacto>Datos Contacto</h3>
+                <h3 class=title-contacto>Datos de Contacto</h3>
 
                 <label for="name">Nombre y Apellido</label>
                 <input type="text" name="nomApe" id="">
