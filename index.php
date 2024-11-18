@@ -40,16 +40,10 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 </a>
                 <p><strong><?php echo "$" . $row['precio']; ?></strong></p>
 
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button href="php/paypal.php" class="btn btn-primary">Comprar ahora</button>
-                    </div>
-                    <a class="btn btn-outline-primary">Agregar al carrito</a>
-                </div>
-                <!-- <div class="d-grid gap-3 col-10 mx-auto">
+                <div class="d-grid gap-3 col-10 mx-auto">
                 <button href="php/paypal.php" class="btn btn-primary">Comprar ahora</button>
                 <button class="btn btn-outline-primary">Agregar al carrito</button>
-            </div> -->
+            </div>
             </div>
         <?php } ?>
     </div>
