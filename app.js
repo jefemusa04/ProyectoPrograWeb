@@ -13,7 +13,7 @@ closeCart.addEventListener("click", () => {
  //COMENZAR CUANDO EL DOCUMENTO ESTÉ LISTO
 
  if(document.readyState == "loading"){
-    document.addEventListener("DOMContentLoaded", start);
+    document.addEventListener("DOMContentLoaded", start());
  }
  else{
     start();
