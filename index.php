@@ -1,11 +1,11 @@
 <?php
-    require 'php/database.php';
-    $db = new Database();
-    $con = $db->conectar();
+require 'php/database.php';
+$db = new Database();
+$con = $db->conectar();
 
-    $sql = $con->prepare("SELECT id, nombre, precio FROM productos WHERE activo = 1");
-    $sql->execute();
-    $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
+$sql = $con->prepare("SELECT id, nombre, precio FROM productos WHERE activo = 1");
+$sql->execute();
+$resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 
@@ -39,7 +39,7 @@
         <div class="nav-bg">
             <nav class="navegacion-principal">
                 <a href="index.html" class="logo"><span>MJ</span>Records</a>
-                 <!--Buscador-->
+                <!--Buscador-->
                 <div class="buscar">
 
                     <input type="text" placeholder="Buscar" required>
@@ -50,35 +50,35 @@
 
                     <a href="contacto.html"><i class="bx bx-phone" id="contacto"></i></a>
 
-                     <!--Iconos de cart-->
+                    <!--Iconos de cart-->
                     <i class="bx bx-shopping-bag" id="cart-icon"></i>
-                    
+
                 </div>
 
                 <!--Cart-->
                 <div class="cart">
-                <h2 class="cart-title">Carrito</h2>
+                    <h2 class="cart-title">Carrito</h2>
 
-                <!--Contenido del carrito (cart)-->
-                <div class="cart-content">
+                    <!--Contenido del carrito (cart)-->
+                    <div class="cart-content">
 
+
+                    </div>
+
+                    <!--Total del carro-->
+                    <div class="total">
+                        <button type="button" class="btn-buy">Comprar Ahora</button>
+                        <div class="total-title"> Total</div>
+                        <div class="total-price"> $0</div>
+
+                    </div>
+
+
+
+                    <!--Cierre del carrito-->
+                    <i class="bx bx-x" id="cart-close"></i>
 
                 </div>
-
-                <!--Total del carro-->
-                <div class="total">
-                    <button type="button" class="btn-buy">Comprar Ahora</button>
-                    <div class="total-title"> Total</div>
-                    <div class="total-price"> $0</div>
-                    
-                </div>
-
-                
-            
-                <!--Cierre del carrito-->
-                <i class="bx bx-x" id="cart-close"></i>
-
-            </div>
             </nav>
         </div>
     </header>
