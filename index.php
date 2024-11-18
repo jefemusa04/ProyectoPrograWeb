@@ -36,14 +36,14 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
                 <a
                     href="php/detalles.php?id=<?php echo htmlspecialchars($row['id']); ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>">
                     <img src="<?php echo htmlspecialchars($imagen); ?>" alt="Imagen de producto">
-                    <h3><?php echo $row['nombre']; ?></h3>
+                    <p class="nombre"><?php echo $row['nombre']; ?></p>
                 </a>
-                <p><strong><?php echo "$" . $row['precio']; ?></strong></p>
+                <p class="precio"><strong><?php echo MONEDA . $row['precio']; ?></strong></p>
 
                 <div class="d-grid gap-3 col-10 mx-auto">
-                <button href="php/paypal.php" class="btn btn-primary">Comprar ahora</button>
-                <button class="btn btn-outline-primary">Agregar al carrito</button>
-            </div>
+                    <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
+                    <button class="btn btn-outline-primary">Agregar al carrito</button>
+                </div>
             </div>
         <?php } ?>
     </div>

@@ -70,6 +70,7 @@ header {
     font-weight: bold;
     color: var(--negromj);
     text-transform: uppercase;
+    text-decoration:none;
 }
 
 .logo span {
