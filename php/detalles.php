@@ -1,5 +1,5 @@
 <?php
-include 'header.html';
+include '../html/header.html';
 require 'database.php';
 require 'config.php';
 $db = new Database();
@@ -9,7 +9,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : '';
 $token = isset($_GET['token']) ? $_GET['token'] : '';
 
 if ($id == '' || $token == '') {
-    include 'error.html';
+    include '../html/error.html';
     exit;
 } else {
     $token_tmp = hash_hmac('sha1', $id, KEY_TOKEN);
@@ -25,7 +25,7 @@ if ($id == '' || $token == '') {
             $descuento = $row['descuento'];
             $precio_des = $precio - (($precio * $descuento) / 100);
 
-            $dir_images = 'imagen/';
+            $dir_images = '../imagen/';
             $rutaImg = "https://via.placeholder.com/300";
 
             // Verificar si existe una imagen con los tipos de archivo especificados
@@ -50,16 +50,19 @@ if ($id == '' || $token == '') {
                 closedir($dir);
             }
         } else {
-            include 'error.html';
+            include '../html/error.html';
             exit;
         }
     } else {
-        include 'error.html';
+        include '../html/error.html';
         exit;
     }
 }
 ?>
 
+<head>
+    <title><?php echo htmlspecialchars($nombre); ?></title>
+</head>
 
 <main>
     <div class="container">
