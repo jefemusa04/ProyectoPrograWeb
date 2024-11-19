@@ -1,10 +1,16 @@
 <?php
 
-require 'config/database.php';
-require 'clases/adminFunciones.php';
+require '../config/database.php';
+require '../clases/adminFunciones.php';
 
 $db = new Database();
 $con = $db->conectar();
+
+// $password = 300505;
+// $sql = "INSERT INTO admin(usuario, contraseña, nombre, email, activo, fecha_alta)
+//         VALUES ('admin3', '$password', 'Yessenia', 'alu.22130839@gmail.com','1',NOW())";
+
+// $con->query($sql);
 
 $errors = [];
 
@@ -32,7 +38,7 @@ if(!empty($_POST)){
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>Login - SB Admin</title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
     </head>
     <body class="bg-primary">
@@ -45,13 +51,13 @@ if(!empty($_POST)){
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesion</h3></div>
                                     <div class="card-body">
-                                        <form action="index.php" method="post" autocomplete="off">
+                                        <form action="/admin/index-admin.php" method="post" autocomplete="off">
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="usuario" name="usuario" type="text" placeholder="usuario" autofocus/>
+                                                <input class="form-control" id="usuario" name="usuario" type="text" placeholder="usuario" value="admin3"autofocus/>
                                                 <label for="inputEmail">Usuario</label>
                                             </div>
                                             <div class="form-floating mb-3">
-                                                <input class="form-control" id="contraseña" name="contraseña" type="password" placeholder="Contraseña" />
+                                                <input class="form-control" id="contraseña" name="contraseña" type="password" placeholder="Contraseña" value="300505"/>
                                                 <label for="inputPassword">Contraseña</label>
                                             </div>
 
@@ -80,6 +86,6 @@ if(!empty($_POST)){
             </div>
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../js/scripts.js"></script>
     </body>
 </html>

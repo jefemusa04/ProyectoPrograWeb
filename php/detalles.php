@@ -77,10 +77,32 @@ if ($id == '' || $token == '') {
                 <p class="lead"><?php echo htmlspecialchars($descripcion); ?></p>
 
                 <div class="d-grid gap-3 col-10 mx-auto">
-                    <button class="btn btn-primary">Comprar ahora</button>
-                    <button class="btn btn-outline-primary">Agregar al carrito</button>
+                    <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
+                    <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo
+                        $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
                 </div>
             </div>
         </div>
     </div>
 </main>
+
+<script>
+    function addProducto(id, token) {
+        let url = 'php/carrito.php';
+        let formData = new FormData();
+        formData.append('id', $id)
+        formData.append('token', token)
+
+        fetch(url, {
+            method: 'POST',
+            body: formData,
+            mode: 'cors'
+        }).then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    let elemento = document.getElementById("num_cart")
+                    elemento.innerHTML = data.numero;
+                }
+            })
+    }
+</script>

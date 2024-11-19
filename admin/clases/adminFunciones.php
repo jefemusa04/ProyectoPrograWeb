@@ -22,7 +22,8 @@ function login($usuario, $contraseña, $con){
     $sql = $con->prepare("SELECT id, usuario, contraseña, nombre FROM admin WHERE usuario LIKE ?  AND activo = 1 LIMIT 1");
     $sql->execute([$usuario]);
     if($row = $sql->fetch(PDO::FETCH_ASSOC)){
-        if(password_verify($contraseña, $row['contraseña'])){
+        if($contraseña == $row['contraseña']){
+        // if(password_verify($contraseña, $row['contraseña'])){
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['nombre'];
             $_SESSION['user_type'] = 'admin';
