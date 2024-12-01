@@ -51,7 +51,7 @@ if(!empty($_POST)){
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header"><h3 class="text-center font-weight-light my-4">Iniciar sesion</h3></div>
                                     <div class="card-body">
-                                        <form action="/admin/index-admin.php" method="post" autocomplete="off">
+                                        <form action="inicio.php" method="post" autocomplete="off">
                                             <div class="form-floating mb-3">
                                                 <input class="form-control" id="usuario" name="usuario" type="text" placeholder="usuario" value="admin3"autofocus/>
                                                 <label for="inputEmail">Usuario</label>
