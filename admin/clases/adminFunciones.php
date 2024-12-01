@@ -27,7 +27,7 @@ function login($usuario, $contraseña, $con){
             $_SESSION['user_id'] = $row['id'];
             $_SESSION['user_name'] = $row['nombre'];
             $_SESSION['user_type'] = 'admin';
-            header('Location: inicio.php');
+            header('Location: ../index-admin.php');
             exit;
         }
     }
