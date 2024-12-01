@@ -12,13 +12,17 @@
                     case 'registrar':
                         include 'registrar.php';
                         break;
+                    case 'editar':
+                        include 'editar.php';
+                        break;
                     default:
                         echo '<p>Página no encontrada.</p>';
                         break;
                 }
             } else {
-                echo '<h1 class="mt-4">Dashboard</h1>';
-                echo '<p>Bienvenido al panel de administración.</p>';
+                echo '<div class="container-fluid">';
+                echo '<br>';
+                echo '</div>';
             }
             ?>
         </div>

@@ -133,7 +133,7 @@ nav a {
 }
 .product img {
     width: 100%;
-    height: auto;
+    height: 300px;
     border-radius: 8px;
 }
 
@@ -331,5 +331,17 @@ footer p {
 }
 
 #user-icon:hover {
+    color: #444;
+}
+
+/* Administrador */
+#admin-icon {
+    color: #004D40;
+    margin-inline-end: auto;
+    font-size: clamp(1em, 5vw, 2rem);
+    cursor: pointer;
+}
+
+#admin-icon:hover {
     color: #444;
 }

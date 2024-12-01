@@ -1,48 +1,86 @@
 <?php
 
-function esNulo(array $parametros){
-    foreach($parametros as $parametro){
-        if(strlen(trim($parametro)) < 1){
+function esNulo(array $parametros)
+{
+    foreach ($parametros as $parametro) {
+        if (strlen(trim($parametro)) < 1) {
             return true;
         }
     }
     return false;
 }
 
-function usuarioExiste($usuario, $con){
+function usuarioExiste($usuario, $con)
+{
     $sql = $con->prepare("SELECT id FROM usuarios WHERE usuario LIKE ? LIMIT 1");
     $sql->execute([$usuario]);
-    if($sql->fetchColumn() > 0){
+    if ($sql->fetchColumn() > 0) {
         return true;
     }
     return false;
 }
 
-function login($usuario, $contraseña, $con){
-    $sql = $con->prepare("SELECT id, usuario, contraseña, nombre FROM admin WHERE usuario LIKE ?  AND activo = 1 LIMIT 1");
+// function login($usuario, $contraseña, $con){
+//     $sql = $con->prepare("SELECT id, usuario, contraseña, nombre FROM admin WHERE usuario LIKE ?  AND activo = 1 LIMIT 1");
+//     $sql->execute([$usuario]);
+//     if($row = $sql->fetch(PDO::FETCH_ASSOC)){
+//         if($contraseña == $row['contraseña']){
+//         // if(password_verify($contraseña, $row['contraseña'])){
+//             $_SESSION['user_id'] = $row['id'];
+//             $_SESSION['user_name'] = $row['nombre'];
+//             $_SESSION['user_type'] = 'admin';
+//             header('Location: inicio.php');
+//             exit;
+//         }
+//     }
+//     return ['El usuario y/o contraseña son incorrectas'];
+// } 
+function login($usuario, $contraseña, $con)
+{
+    $errors = [];
+    $sql = $con->prepare("SELECT * FROM admin WHERE usuario = ? LIMIT 1");
     $sql->execute([$usuario]);
-    if($row = $sql->fetch(PDO::FETCH_ASSOC)){
-        if($contraseña == $row['contraseña']){
-        // if(password_verify($contraseña, $row['contraseña'])){
-            $_SESSION['user_id'] = $row['id'];
-            $_SESSION['user_name'] = $row['nombre'];
-            $_SESSION['user_type'] = 'admin';
-            header('Location: inicio.php');
-            exit;
-        }
-    }
-    return ['El usuario y/o contraseña son incorrectas'];
-} 
+    $admin = $sql->fetch(PDO::FETCH_ASSOC);
 
-function mostrarMensajes(array $errors){
-    if(count($errors) > 0) {
-        echo '<div class="alert alert-warning alert-dismissible fade show" role="alert"><ul>';
-        foreach($errors as $error){
-            echo '<li>' . $error . '</li>';
+    if ($admin) {
+        if ($admin['contraseña'] == $contraseña) { // Evita esto, usa hashing en producción
+            session_start();
+            $_SESSION['admin_id'] = $admin['id'];
+            $_SESSION['admin_nombre'] = $admin['nombre'];
+            header("Location: index-admin.php");
+            exit;
+        } else {
+            $errors[] = "Contraseña incorrecta.";
         }
-        echo '<ul>';
-        echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+    } else {
+        $errors[] = "Usuario no encontrado.";
+    }
+
+    return $errors;
+}
+
+
+// function mostrarMensajes(array $errors)
+// {
+//     if (count($errors) > 0) {
+//         echo '<div class="alert alert-warning alert-dismissible fade show" role="alert"><ul>';
+//         foreach ($errors as $error) {
+//             echo '<li>' . $error . '</li>';
+//         }
+//         echo '<ul>';
+//         echo '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>';
+//     }
+// }
+
+function mostrarMensajes($errors) {
+    if (!empty($errors)) {
+        echo '<div class="alert alert-danger">';
+        foreach ($errors as $error) {
+            echo '<p>' . htmlspecialchars($error) . '</p>';
+        }
+        echo '</div>';
     }
 }
+
 
 ?>

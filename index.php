@@ -1,15 +1,15 @@
 <?php
-include 'html/header.html';
-require 'php/database.php';
 require 'php/config.php';
+require 'php/database.php';
+include 'html/header.html';
+
 $db = new Database();
 $con = $db->conectar();
 
-$sql = $con->prepare("SELECT id, nombre, descripcion, precio FROM productos WHERE activo = 1");
+// Obtener productos y su información, incluyendo la imagen
+$sql = $con->prepare("SELECT id, nombre, descripcion, precio, imagen FROM productos WHERE activo = 1");
 $sql->execute();
 $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
-
-print_r($_SESSION);
 ?>
 
 <head>
@@ -17,59 +17,66 @@ print_r($_SESSION);
 </head>
 
 <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4"> <!-- Ajustado a 5 columnas -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
+        <!-- Ajustado a 4 columnas -->
         <?php foreach ($resultado as $row) { ?>
-            <div class="col"> <!-- Asegúrate de que cada producto esté dentro de un div con la clase 'col' -->
-                <div class="product">
-                    <?php
-                    $id = $row['id'];
-                    $tipos = ['jpg', 'png', 'webp', 'jpeg'];
+        <div class="col">
+            <div class="product">
+                <?php
+                // Usar la imagen de la base de datos o una imagen predeterminada
+                $imagen = !empty($row['imagen']) ? htmlspecialchars($row['imagen']) : "imagen/noimage.png";
+                ?>
+                <a
+                    href="php/detalles.php?id=<?php echo htmlspecialchars($row['id']); ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
+                >
+                    <img
+                        src="<?php echo $imagen; ?>"
+                        alt="Imagen de producto"
+                        class="img-fluid"
+                    />
+                    <p class="nombre"><?php echo htmlspecialchars($row['nombre']); ?></p>
+                </a>
+                <p class="precio">
+                    <strong><?php echo MONEDA . number_format($row['precio'], 2); ?></strong>
+                </p>
 
-                    $imagen = "https://via.placeholder.com/300"; // Imagen predeterminada
-                    foreach ($tipos as $tipo) {
-                        $ruta = "imagen/" . $id . "." . $tipo;
-                        if (file_exists($ruta)) {
-                            $imagen = $ruta;
-                            break;
-                        }
-                    }
-                    ?>
-                    <a href="php/detalles.php?id=<?php echo htmlspecialchars($row['id']); ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>">
-                        <img src="<?php echo htmlspecialchars($imagen); ?>" alt="Imagen de producto">
-                        <p class="nombre"><?php echo $row['nombre']; ?></p>
-                    </a>
-                    <p class="precio"><strong><?php echo MONEDA . $row['precio']; ?></strong></p>
-
-                    <div class="d-grid gap-3 col-10 mx-auto">
-                        <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
-                        <button class="btn btn-outline-primary" type="button" onclick="addProducto(<?php echo $id; ?>, '<?php echo $token_tmp; ?>')">Agregar al carrito</button>
-                    </div>
+                <div class="d-grid gap-3 col-10 mx-auto">
+                    <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
+                    <button
+                        class="btn btn-outline-primary"
+                        type="button"
+                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')"
+                    >
+                        Agregar al carrito
+                    </button>
                 </div>
             </div>
+        </div>
         <?php } ?>
     </div>
 </div>
 
 <script>
     function addProducto(id, token) {
-        let url = 'php/carrito.php';
+        let url = "php/carrito.php";
         let formData = new FormData();
-        formData.append('id', id); // Usa `id` en lugar de `$id`
-        formData.append('token', token);
+        formData.append("id", id);
+        formData.append("token", token);
 
         fetch(url, {
-            method: 'POST',
+            method: "POST",
             body: formData,
-            mode: 'cors'
-        }).then(response => response.json())
-            .then(data => {
+            mode: "cors",
+        })
+            .then((response) => response.json())
+            .then((data) => {
                 if (data.ok) {
                     let elemento = document.getElementById("num_cart");
                     elemento.innerHTML = data.numero;
                 }
             })
-            .catch(error => {
-                console.error('Error al agregar al carrito:', error);
+            .catch((error) => {
+                console.error("Error al agregar al carrito:", error);
             });
     }
 </script>
