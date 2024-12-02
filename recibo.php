@@ -8,7 +8,7 @@ $con = $db->conectar();
 
 
 $id_transaccion = isset($_GET['key']) ? $_GET['key'] : 0;
-$id_transaccion = 'TX67890';
+//$id_transaccion = 'TX67890';//prueba
 
 $error = '';
 if($id_transaccion == 0){
