@@ -31,7 +31,7 @@ function login($usuario, $contraseña, $con)
             session_start();
             $_SESSION['admin_id'] = $admin['id'];
             $_SESSION['admin_nombre'] = $admin['nombre'];
-            header("Location: index-admin.php");
+            header("Location: ../index-admin.php");
             exit;
         } else {
             $errors[] = "Contraseña incorrecta.";
