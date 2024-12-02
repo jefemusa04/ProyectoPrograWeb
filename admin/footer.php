@@ -19,7 +19,7 @@
     <!-- End of Page Wrapper -->
 
     <!-- Logout Modal -->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
+    <!-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="logoutModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -38,7 +38,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Scripts -->
     <script src="js/sb-admin-2.min.js"></script>

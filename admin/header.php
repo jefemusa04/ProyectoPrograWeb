@@ -1,19 +1,24 @@
 <?php
-// Asegúrate de que el ID del administrador esté almacenado en $_SESSION
-$adminId = isset($_SESSION['admin_id']) ? $_SESSION['admin_id'] : null;
+// session_start();
 
-// Si hay un administrador identificado, obtén su nombre
-$nombreAdmin = "";
-if ($adminId) {
-    $sql = $con->prepare("SELECT nombre FROM admin WHERE id = ?");
-    $sql->execute([$adminId]);
-    $admin = $sql->fetch(PDO::FETCH_ASSOC);
+// print_r($_SESSION['sexo']);
 
-    if ($admin) {
-        $nombreAdmin = $admin['nombre'];
-    }
+if (!isset($_SESSION['nombre'])) {
+    $nombreAdmin = "Administrador Desconocido";
 }
+
+$nombreAdmin = $_SESSION['nombre'];
+
+echo "<script>console.log('PHP nombreAdmin:', " . json_encode($nombreAdmin) . ");</script>";
+
+if (!isset($_SESSION['sexo'])) {
+    $_SESSION['sexo'] = "3";
+}
+
+$sexoAdmin = $_SESSION['sexo'];
+// echo "<script>console.log('PHP sexoAdmin:', " . json_encode($sexoAdmin) . ");</script>";
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -129,16 +134,16 @@ if ($adminId) {
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                    <?php echo htmlspecialchars($nombreAdmin); ?>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="nombreAdmin">
+                                    <!-- //echo htmlspecialchars($nombreAdmin); -->
+                                    Administrador Desconocido
                                 </span>
-                                <img class="img-profile rounded-circle" src="img/profile.jpg" alt="User Image"
-                                    width="30">
+                                <img class="img-profile rounded-circle" id="imgPerfil" alt="User Image" width="30">
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" href="sesion/cerrar.php">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Cerrar Sesión
                                 </a>
@@ -151,6 +156,49 @@ if ($adminId) {
                 <!-- Scripts -->
                 <script src="js/jquery.js"></script>
                 <script src="js/bootstrap.js"></script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const nombreAdmin = <?php echo json_encode($nombreAdmin); ?>;
+                        const nombreElemento = document.getElementById("nombreAdmin").textContent = nombreAdmin;
+
+                        // Actualiza el nombre
+                        if (nombreAdmin && nombreElemento) {
+                            nombreElemento.textContent = nombreAdmin;
+                        } else {
+                            console.warn("No se encontró el elemento o el nombre está vacío.");
+                        }
+                    });
+                </script>
+                <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const sexoAdmin = parseInt(<?php echo json_encode($sexoAdmin); ?>, 10);
+
+                        // console.log("Tipo de dato de sexoAdmin:", typeof sexoAdmin);
+                        // console.log("Valor de sexoAdmin:", sexoAdmin);
+
+                        //Imagen según sexo
+                        const imgElemento = document.getElementById("imgPerfil");
+
+                        if (imgElemento) {
+                            if (sexoAdmin === 0) {
+                                // console.log("Configurando imagen masculina");
+                                imgElemento.src = "img/hombre.svg";
+                                imgElemento.alt = "Imagen Masculina";
+                            } else if (sexoAdmin === 1) {
+                                // console.log("Configurando imagen femenina");
+                                imgElemento.src = "img/mujer.svg";
+                                imgElemento.alt = "Imagen Femenina";
+                            } else {
+                                // console.log("Configurando imagen por defecto");
+                                imgElemento.src = "img/default.svg";
+                                imgElemento.alt = "Imagen por Defecto";
+                            }
+                        } else {
+                            console.error("No se encontró el elemento de la imagen.");
+                        }
+                    });
+
+                </script>
 
 </body>
 
