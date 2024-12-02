@@ -16,6 +16,15 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <title>WoofLandia</title>
 </head>
 
+<div class="slider">
+<div class="slider-inner">       
+                <img src="imagen/corgi chiquito.jpeg" alt="Corgi"> 
+                <img src="imagen/french.jpg" alt="French">
+                <img src="imagen/pastor no de iglesia.jpg" alt="Pastor">
+                <img src="imagen/gran-danés-posando.webp" alt="Gran">  
+</div>  
+    </div>
+
 <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
         <!-- Ajustado a 4 columnas -->
