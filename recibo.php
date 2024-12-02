@@ -6,10 +6,12 @@ require 'php/config.php';
 $db = new Database();
 $con = $db->conectar();
 
-$id_transaccion = isset($_GET['key']) ? $_GET['key'] : 0;
 
-$error = "";
-if($id_transaccion == ''){
+$id_transaccion = isset($_GET['key']) ? $_GET['key'] : 0;
+$id_transaccion = 'TX67890';
+
+$error = '';
+if($id_transaccion == 0){
     $error = 'Error al procesar la peticion';
 } else {
     $sql = $con->prepare("SELECT count(id) FROM compra WHERE id_transaccion=? AND estado=?");
@@ -71,6 +73,7 @@ $detalles = $stmt->fetchAll(PDO::FETCH_ASSOC);
 */
 
 // Agregar contenido al PDF
+$moneda = "$";
 $htmlContent = '';
 $htmlContent .= <<<EOD
     <div class="container">
@@ -92,7 +95,10 @@ EOD;
             <br>
             <b>Fecha de compra:</b> {$fecha}
             <br>
-            <b>Total:</b> {MONEDA} {number_format($total, 2, '.', ',')}
+            <b>Total:</b> {$moneda}
+EOD;
+$htmlContent .= number_format($total, 2, '.', ',');
+$htmlContent .= <<<EOD
             <br>
         </div>
     </div>
@@ -110,6 +116,7 @@ EOD;
                 <tbody>
 EOD;
 
+if ($sqlDet->rowCount() > 0) {
     while ($row_det = $sqlDet->fetch(PDO::FETCH_ASSOC)) {
         $importe = $row_det['precio'] * $row_det['cantidad'];
         $htmlContent .= <<<EOD
@@ -120,7 +127,13 @@ EOD;
             </tr>
 EOD;
     }
-
+} else {
+    $htmlContent .= <<<EOD
+        <tr>
+            <td colspan="3">No hay detalles disponibles</td>
+        </tr>
+EOD;
+}
     $htmlContent .= <<<EOD
                 </tbody>
             </table>
@@ -139,3 +152,4 @@ $pdf->writeHTML($htmlContent, true, false, true, false, '');
 
 // Generar el PDF
 $pdf->Output('recibo.pdf', 'I'); // 'I' para mostrar en el navegador, 'D' para descargar
+?>
