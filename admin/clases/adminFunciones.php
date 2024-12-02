@@ -28,10 +28,11 @@ function login($usuario, $contraseña, $con): array
         // if (password_verify($contraseña, $admin['contraseña'])) {
         if ($admin['contraseña'] == $contraseña) {
             session_start();
+          
             $_SESSION['id'] = $admin['id'];
             $_SESSION['nombre'] = $admin['nombre'];
             $_SESSION['sexo'] = $admin['sexo'];
-            
+
             header("Location: ../index-admin.php");
             exit;
         } else {
@@ -54,4 +55,6 @@ function mostrarMensajes($errors)
         echo '</div>';
     }
 }
+
+
 ?>
