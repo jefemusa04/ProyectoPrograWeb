@@ -1,4 +1,15 @@
-<?php include 'header.php'; ?>
+<?php
+// session_start();
+ob_start();
+
+if (!isset($_SESSION['nombre'])) {
+    header('Location: sesion/inicio.php');
+    exit();
+}else{
+    include 'header.php';
+}
+
+?>
 <div id="layoutSidenav_content">
     <main>
         <div class="container-fluid px-4">
@@ -21,11 +32,13 @@
                 }
             } else {
                 echo '<div class="container-fluid">';
-                echo '<br>';
+                echo '<div class="text-center vertical-center">';
+                echo '<img class="img-fluid" src="img/undraw_tabs.svg" alt="Content Image"
+                                    height="auto">';
+                echo '</div>';
                 echo '</div>';
             }
             ?>
         </div>
     </main>
-<?php include 'footer.php'; ?>
-
+    <?php include 'footer.php'; ?>

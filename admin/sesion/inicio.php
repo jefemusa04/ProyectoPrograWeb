@@ -1,16 +1,15 @@
 <?php
-
-require '../config/database.php';
+require_once '../config/database.php';
 require '../clases/adminFunciones.php';
 
 $db = new Database();
 $con = $db->conectar();
 
-// $password = 300505;
-// $sql = "INSERT INTO admin(usuario, contraseña, nombre, email, activo, fecha_alta)
-//         VALUES ('admin3', '$password', 'Yessenia', 'alu.22130839@gmail.com','1',NOW())";
+// // $password = 300505;
+// // $sql = "INSERT INTO admin(usuario, contraseña, nombre, email, activo, fecha_alta)
+// //         VALUES ('admin3', '$password', 'Yessenia', 'alu.22130839@gmail.com','1',NOW())";
 
-// $con->query($sql);
+// // $con->query($sql);
 
 $errors = [];
 
@@ -26,7 +25,6 @@ if (!empty($_POST)) {
         $errors = login($usuario, $contraseña, $con);
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -79,8 +77,8 @@ if (!empty($_POST)) {
                                         <?php mostrarMensajes($errors); ?>
 
                                         <div class="d-flex align-items-center justify-content-between mt-4 mb-0">
-                                            <a class="small" href="password.html">Forgot Password?</a>
-                                            <button type="submit" class="btn btn-primary">Login</button>
+                                            <a class="small"></a>
+                                            <button type="submit" class="btn btn-primary">Iniciar</button>
                                         </div>
                                     </form>
                                 </div>
