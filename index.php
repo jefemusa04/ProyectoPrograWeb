@@ -16,45 +16,51 @@ $resultado = $sql->fetchAll(PDO::FETCH_ASSOC);
     <title>WoofLandia</title>
 </head>
 
-<div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-4 g-4">
-        <!-- Ajustado a 4 columnas -->
-        <?php foreach ($resultado as $row) { ?>
-        <div class="col">
-            <div class="product">
-                <?php
-                // Usar la imagen de la base de datos o una imagen predeterminada
-                $imagen = !empty($row['imagen']) ? htmlspecialchars($row['imagen']) : "imagen/noimage.png";
-                ?>
-                <a
-                    href="php/detalles.php?id=<?php echo htmlspecialchars($row['id']); ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>"
-                >
-                    <img
-                        src="<?php echo $imagen; ?>"
-                        alt="Imagen de producto"
-                        class="img-fluid"
-                    />
-                    <p class="nombre"><?php echo htmlspecialchars($row['nombre']); ?></p>
-                </a>
-                <p class="precio">
-                    <strong><?php echo MONEDA . number_format($row['precio'], 2); ?></strong>
-                </p>
-
-                <div class="d-grid gap-3 col-10 mx-auto">
-                    <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
-                    <button
-                        class="btn btn-outline-primary"
-                        type="button"
-                        onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')"
-                    >
-                        Agregar al carrito
-                    </button>
-                </div>
-            </div>
+<div class="">
+    <div class="container-slider">
+        <div class="slider-frame">
+            <ul>
+                <li><img src="slider/corgi chiquito.jpg" alt="Corgi"></li>
+                <li><img src="slider/french.jpg" alt="French"></li>
+                <li><img src="slider/pastor no de iglesia.jpg" alt="Pastor"></li>
+                <li><img src="slider/gran.jpg" alt="Gran"></li>
+            </ul>
         </div>
-        <?php } ?>
+    </div>
+    <div class="container ">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xxlg-5">
+            <!-- Ajustado a 4 columnas -->
+            <?php foreach ($resultado as $row) { ?>
+                <div class="col">
+                    <div class="product">
+                        <?php
+                        // Usar la imagen de la base de datos o una imagen predeterminada
+                        $imagen = !empty($row['imagen']) ? htmlspecialchars($row['imagen']) : "imagen/noimage.png";
+                        ?>
+                        <a
+                            href="php/detalles.php?id=<?php echo htmlspecialchars($row['id']); ?>&token=<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>">
+                            <img src="<?php echo $imagen; ?>" alt="Imagen de producto" class="img-fluid" />
+                            <p class="nombre"><?php echo htmlspecialchars($row['nombre']); ?></p>
+                        </a>
+                        <p class="precio">
+                            <strong><?php echo MONEDA . number_format($row['precio'], 2); ?></strong>
+                        </p>
+
+                        <div class="d-grid gap-3 col-10 mx-auto">
+                            <a href="php/paypal.php" class="btn btn-primary">Comprar ahora</a>
+                            <button class="btn btn-outline-primary" type="button"
+                                onclick="addProducto(<?php echo $row['id']; ?>, '<?php echo hash_hmac('sha1', $row['id'], KEY_TOKEN); ?>')">
+                                Agregar al carrito
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
     </div>
 </div>
+
+<script src="/slider.js"></script>
 
 <script>
     function addProducto(id, token) {

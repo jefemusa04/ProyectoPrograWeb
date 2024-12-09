@@ -936,7 +936,7 @@ pre code {
   margin-left: 91.66667%;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 100px) {
   .col-sm {
     flex-basis: 0;
     flex-grow: 1;
@@ -954,7 +954,7 @@ pre code {
   }
 
   .row-cols-sm-3>* {
-    flex: 0 0 33.33333%;
+    flex: 0 0 30%;
     max-width: 33.33333%;
   }
 
@@ -1148,7 +1148,7 @@ pre code {
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 1000px) {
   .col-md {
     flex-basis: 0;
     flex-grow: 1;
