@@ -337,15 +337,20 @@ footer p {
 }
 
 .cart-img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     object-fit: contain;
-    padding: 10px;
+    margin-right: 10px;
 }
 
-.detail.box {
-    display: grid;
-    row-gap: 0.5rem;
+.detail-box {
+    display: flex;
+    align-items: center;
+}
+
+.cart-product-info {
+    display: flex;
+    flex-direction: column;
 }
 
 .cart-product-title {
